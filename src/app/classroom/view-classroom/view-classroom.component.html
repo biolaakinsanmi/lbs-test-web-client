@@ -1,0 +1,60 @@
+<ng-container *ngIf="classroom.id">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h3 class="text-white">
+                <i class="lni lni-archive"></i>
+                {{classroom.name | uppercase}}
+            </h3>
+            <div class="small">
+                <span><i class="lni lni-user"></i></span> 
+                User count: {{classroom.Users?.length}}
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-0">
+                <div class="row m-0">
+                    <div class="col-sm-12 col-md-4 bg-light p-3 text-muted">
+                        Name
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-3">
+                        {{classroom.name}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item p-0">
+                <div class="row m-0">
+                    <div class="col-sm-12 col-md-4 bg-light p-3 text-muted">
+                        Description
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-3">
+                        {{classroom.description}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item text-center">
+                <a [routerLink]="['/classrooms/edit/', classroom.id]" class="btn btn-outline-info mx-2">
+                    <i class="lni lni-pencil-alt"></i> Edit
+                </a>
+                <button (click)="confirmDelete()" class="btn btn-outline-danger mx-2">
+                    <i class="lni lni-trash"></i> Delete
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card mt-5" *ngIf="classroom.Users">
+        <div class="card-header bg-primary text-center text-white">
+            <div class="small">
+                <span><i class="lni lni-user"></i></span> 
+                User count: {{classroom.Users?.length}}
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let user of classroom.Users">
+                <a [routerLink]="['/users/view', user.id]" class="h5 text-primary">
+                    {{user.firstName}} {{user.lastName}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</ng-container>

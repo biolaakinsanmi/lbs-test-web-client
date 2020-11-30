@@ -1,0 +1,37 @@
+<div class="text-center mb-3">
+    <a class="btn btn-sm btn-outline-primary" [routerLink]="['/classrooms/new']">+ Add Classroom</a>
+</div>
+
+<div class="alert alert-warning" role="alert" *ngIf="classrooms.length < 1">
+    No Classes Available.
+</div>
+
+<ng-container *ngIf="classrooms.length > 0">
+    <div class="card">
+        <div class="card-header bg-primary">
+          <h3 class="text-white">Classrooms</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex p-0"  *ngFor="let class of classrooms">
+                <div class="iconbox bg-light px-3 py-2 d-flex flex-column justify-content-center">
+                    <a [routerLink]="['/classrooms/', class.id]" class="h5 text-primary">
+                        <i class="h1 lni lni-archive text-primary"></i>
+                    </a>
+                </div>
+
+                <div class="leftcont p-3">
+                    <a [routerLink]="['/classrooms/view/', class.id]" class="h5 text-primary">
+                        {{class.name}}
+                    </a>
+                    <p>
+                        {{class.description}}
+                    </p>
+                    <div class="small">
+                        <span><i class="lni lni-user text-primary"></i></span> 
+                        User count: {{class.Users.length}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-container>

@@ -1,0 +1,56 @@
+<ng-container *ngIf="user.id">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h3 class="text-white">
+                <i class="lni lni-user"></i>
+                {{user.firstName | uppercase}}
+            </h3>
+            <div class="small" *ngIf="user.Classroom">
+                <a [routerLink]="['/classrooms/view', user.Classroom.id]" class="h5 text-white">
+                    <span><i class="lni lni-archive"></i></span> 
+                    {{user.Classroom.name}}
+                </a>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-0">
+                <div class="row m-0">
+                    <div class="col-sm-12 col-md-4 bg-light p-3 text-muted">
+                        First Name
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-3">
+                        {{user.firstName}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item p-0">
+                <div class="row m-0">
+                    <div class="col-sm-12 col-md-4 bg-light p-3 text-muted">
+                        Last Name
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-3">
+                        {{user.lastName}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item p-0">
+                <div class="row m-0">
+                    <div class="col-sm-12 col-md-4 bg-light p-3 text-muted">
+                        Email
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-3">
+                        {{user.email}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item text-center">
+                <a [routerLink]="['/users/edit/', user.id]" class="btn btn-outline-info mx-2">
+                    <i class="lni lni-pencil-alt"></i> Edit
+                </a>
+                <button (click)="confirmDelete()"  class="btn btn-outline-danger mx-2">
+                    <i class="lni lni-trash"></i> Delete
+                </button>
+            </li>
+        </ul>
+    </div>
+</ng-container>
